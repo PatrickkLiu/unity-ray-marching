@@ -123,15 +123,15 @@ public struct Aabb
     float tMax = float.MaxValue;
 
     Vector3 d = to - from;
-    Vector3 absD = VectorUtil.Abs(d);
+    Vector3 absD = VectorUtility.Abs(d);
 
     for (int i = 0; i < 3; ++i)
     {
-      float dComp = VectorUtil.GetComopnent(d, i);
-      float absDComp = VectorUtil.GetComopnent(absD, i);
-      float fromComp = VectorUtil.GetComopnent(from, i);
-      float minComp = VectorUtil.GetComopnent(Min, i);
-      float maxComp = VectorUtil.GetComopnent(Max, i);
+      float dComp = VectorUtility.GetComopnent(d, i);
+      float absDComp = VectorUtility.GetComopnent(absD, i);
+      float fromComp = VectorUtility.GetComopnent(from, i);
+      float minComp = VectorUtility.GetComopnent(Min, i);
+      float maxComp = VectorUtility.GetComopnent(Max, i);
 
       if (absDComp < float.Epsilon)
       {
@@ -405,8 +405,8 @@ public class AabbTree<T> where T : class
     float maxFraction = 1.0f;
 
     // v is perpendicular to the segment.
-    Vector3 v = VectorUtil.FindOrthogonal(r).normalized;
-    Vector3 absV = VectorUtil.Abs(v);
+    Vector3 v = VectorUtility.FindOrthogonal(r).normalized;
+    Vector3 absV = VectorUtility.Abs(v);
 
     // build a bounding box for the segment.
     Aabb rayBounds = Aabb.Empty;
@@ -454,8 +454,8 @@ public class AabbTree<T> where T : class
           // Update segment bounding box.
           maxFraction = newMaxFraction;
           Vector3 newTo = from + maxFraction * (to - from);
-          rayBounds.Min = VectorUtil.Min(from, newTo);
-          rayBounds.Max = VectorUtil.Max(from, newTo);
+          rayBounds.Min = VectorUtility.Min(from, newTo);
+          rayBounds.Max = VectorUtility.Max(from, newTo);
         }
       }
       else
